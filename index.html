@@ -166,7 +166,7 @@
     async function fetchPosts() {
       try {
         const search = document.getElementById('searchInput').value;
-        const res = await fetch(`http://${window.location.hostname}:3000/api/posts?radius=${currentRadius}&category=${currentCategory}&search=${encodeURIComponent(search)}&userLat=${userLocation.lat}&userLng=${userLocation.lng}`);
+        const res = await fetch(`/api/posts?radius=${currentRadius}&category=${currentCategory}&search=${encodeURIComponent(search)}&userLat=${userLocation.lat}&userLng=${userLocation.lng}`);
         const data = await res.json();
         renderFeed(data.posts || []);
       } catch (err) {
@@ -217,7 +217,7 @@
         formData.append('image', fileInput.files[0]);
       }
 
-      await fetch(`http://${window.location.hostname}:3000/api/posts`, {
+      await fetch('/api/posts', {
         method: 'POST',
         body: formData
       });
